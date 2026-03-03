@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>神经网络与深度学习 16 周课程安排</title>
+
+<style>
+  :root { color-scheme: light; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC","Hiragino Sans GB","Microsoft YaHei", sans-serif;
+         line-height: 1.65; margin: 32px auto; padding: 0 18px; max-width: 980px; color: #111; }
+  h1,h2,h3 { line-height: 1.25; margin-top: 1.4em; }
+  h1 { font-size: 30px; margin-top: 0.4em; }
+  h2 { font-size: 22px; border-bottom: 1px solid #eee; padding-bottom: 6px; }
+  h3 { font-size: 18px; }
+  blockquote { border-left: 4px solid #ddd; margin: 1em 0; padding: 0.2em 1em; color: #444; background: #fafafa; }
+  code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+  pre code { display: block; padding: 12px; overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+  th, td { border: 1px solid #e5e7eb; padding: 10px 10px; vertical-align: top; }
+  th { background: #f9fafb; }
+  hr { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+  a { color: #0b57d0; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+
+</head>
+<body>
+<h1 id="神经网络与深度学习-16-周课程安排">神经网络与深度学习 16 周课程安排</h1>
+
+<blockquote>
+  <p><strong>课程定位</strong>：本科生，每周 3 节 × 45 分钟 = 135 分钟</p>
+  
+  <p><strong>教材</strong>：邱锡鹏《神经网络与深度学习》（理论版）+ 《神经网络与深度学习——案例与实践》（实践版）</p>
+  
+  <p><strong>核心原则</strong>：只讲当前工业界仍在使用的主流技术，跳过已过时的方法；理论先行、实践跟进；实践版 8 章全覆盖。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="理论版-实践版章节使用说明仅保留使用的部分">理论版 &amp; 实践版章节使用说明（仅保留/使用的部分）</h2>
+
+<table>
+<thead>
+<tr>
+  <th>核心模块</th>
+  <th>理论版（仅使用主流内容，跳过落后技术）</th>
+  <th>实践版（全章/核心小节使用，无跳过）</th>
+  <th>对应周</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>实践基础</td>
+  <td>无对应章节</td>
+  <td>第 1 章（全章：张量/算子/Dataset/Runner 类）</td>
+  <td>第 1 周</td>
+</tr>
+<tr>
+  <td>机器学习基础</td>
+  <td>第 2 章（全章，跳过纯理论定理复杂推导，聚焦五要素/线性回归核心）</td>
+  <td>第 2 章（全章：线性/多项式回归 + 波士顿房价预测）</td>
+  <td>第 2 周</td>
+</tr>
+<tr>
+  <td>线性分类</td>
+  <td>第 3 章（3.1–3.3 节：Logistic/Softmax 回归，跳过 3.4 节感知器、3.5 节支持向量机）</td>
+  <td>第 3 章（全章：Logistic 二分类/Softmax 多分类 + 鸢尾花分类）</td>
+  <td>第 3–4 周</td>
+</tr>
+<tr>
+  <td>前馈神经网络（FNN）</td>
+  <td>第 4 章（聚焦神经元/ReLU 激活/反向传播/自动梯度，跳过感知器/旧激活函数复杂推导）</td>
+  <td>第 4 章（全章：FNN 二分类/多分类 + 鸢尾花分类实战）</td>
+  <td>第 5–6 周</td>
+</tr>
+<tr>
+  <td>卷积神经网络（CNN）</td>
+  <td>第 5 章（聚焦卷积运算/卷积层/汇聚层/ResNet，跳过 LRN、纯 LeNet 复杂推导）</td>
+  <td>第 5 章（全章：边缘检测/LeNet 手写数字识别/ResNet18 图像分类）</td>
+  <td>第 7–8 周</td>
+</tr>
+<tr>
+  <td>循环神经网络（RNN/LSTM）</td>
+  <td>第 6 章（仅用 RNN 长程依赖问题引 LSTM/GRU，跳过 Simple RNN/RTL，聚焦 LSTM/双向 LSTM）</td>
+  <td>第 6 章（全章：LSTM 记忆实验/梯度截断/双向 LSTM 文本分类，跳过纯 RNN 实操）</td>
+  <td>第 9–10 周</td>
+</tr>
+<tr>
+  <td>网络优化与正则化</td>
+  <td>第 7 章（聚焦 Adam/He/Xavier 初始化/BN/LN/L2/暂退法，跳过 LRN/固定方差初始化/纯 SGD）</td>
+  <td>第 7 章（全章：优化算法对比/参数初始化/规范化/正则化实践）</td>
+  <td>第 11 周</td>
+</tr>
+<tr>
+  <td>注意力机制</td>
+  <td>第 8 章（聚焦加性/点积/自注意力/多头注意力，跳过神经学背景/记忆增强神经网络）</td>
+  <td>第 8 章（全章：LSTM + 注意力文本分类/自注意力语义匹配 + 注意力可视化）</td>
+  <td>第 12–13 周</td>
+</tr>
+<tr>
+  <td>Transformer（大语言模型基础）</td>
+  <td>第 8 章（自注意力延伸）+ 第 15 章（跳过 N 元模型，保留序列生成核心思想）</td>
+  <td>无对应章节，基于注意力机制实操拓展</td>
+  <td>第 14 周</td>
+</tr>
+<tr>
+  <td>大语言模型（LLM）基础</td>
+  <td>第 15 章（Seq2Seq 架构延伸）+ Transformer 拓展</td>
+  <td>无对应章节，融合全课程实操做综合案例</td>
+  <td>第 15 周</td>
+</tr>
+<tr>
+  <td>课程总结与综合实践</td>
+  <td>全课程核心模块梳理</td>
+  <td>全课程实操流程/案例复盘</td>
+  <td>第 16 周</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="16-周详细课时安排">16 周详细课时安排</h2>
+
+<blockquote>
+  <p>三段式教学：理论讲解 + 代码演示 + 课堂实操</p>
+</blockquote>
+
+<h3 id="第-1-周课程入门与深度学习实践基础">第 1 周：课程入门与深度学习实践基础</h3>
+
+<p><strong>核心内容</strong>：课程框架介绍 + 实践版第 1 章（全章）</p>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>课程目标、深度学习主流技术体系、两本书章节对应关系</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>张量（创建/属性/运算/与 Numpy 转换）、算子定义与自动微分机制</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>优化器基础、Dataset 类/Runner 类实现、代码本地/在线运行方法</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：实现张量基础运算、简易 Dataset/Runner 类，跑通基础代码框架。</p>
+
+<hr />
+
+<h3 id="第-2-周机器学习核心基础-线性回归实践">第 2 周：机器学习核心基础 + 线性回归实践</h3>
+
+<p><strong>核心内容</strong>：理论版第 2 章 + 实践版第 2 章（2.1–2.3）</p>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>机器学习基本概念、数据/模型/学习准则/优化算法/评价指标（理论 + 实践）</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>线性回归模型构建、损失函数、优化器（实践版 2.2）</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>多项式回归 + L2 正则化缓解过拟合（实践版 2.3）</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：实现线性/多项式回归的训练与评价，验证正则化对过拟合的改善效果。</p>
+
+<hr />
+
+<h3 id="第-3-周线性回归实战-线性分类基础">第 3 周：线性回归实战 + 线性分类基础</h3>
+
+<p><strong>核心内容</strong>：实践版第 2 章（2.5）+ 第 3 章（3.1）</p>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>波士顿房价预测数据处理、模型构建、RunnerV1 完善（实践版 2.5）</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>Logistic 回归二分类原理、损失函数（交叉熵）、模型优化（实践版 3.1）</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>RunnerV2 完善（适配分类任务）、Logistic 回归二分类数据集构建与训练</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：完成波士顿房价预测 + Logistic 回归二分类的全代码实现与模型评价。</p>
+
+<hr />
+
+<h3 id="第-4-周softmax-回归多分类-实战">第 4 周：Softmax 回归多分类 + 实战</h3>
+
+<p><strong>核心内容</strong>：实践版第 3 章（3.2–3.3）</p>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>Softmax 回归原理、损失函数、模型优化（实践版 3.2）</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>鸢尾花分类任务数据处理、模型构建（实践版 3.3）</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>Softmax 回归鸢尾花分类训练/评价/预测，总结线性模型实操流程</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：实现 Softmax 回归多分类全流程，完成鸢尾花分类预测与结果分析。</p>
+
+<hr />
+
+<h3 id="第-5-周前馈神经网络核心-二分类实践">第 5 周：前馈神经网络核心 + 二分类实践</h3>
+
+<p><strong>核心内容</strong>：理论版第 4 章 + 实践版第 4 章（4.1–4.2）</p>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>FNN 神经元、净活性值、主流激活函数（ReLU 为主，跳过纯 Sigmoid/tanh 单独实验）</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>FNN 二分类模型构建、损失函数、模型优化（实践版 4.2）</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>RunnerV2_1 完善、FNN 二分类数据集构建与训练/评价</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：实现基于 ReLU 的 FNN 二分类模型，掌握反向传播的梯度计算逻辑（调用自动微分）。</p>
+
+<hr />
+
+<h3 id="第-6-周fnn-优化-鸢尾花分类实战">第 6 周：FNN 优化 + 鸢尾花分类实战</h3>
+
+<p><strong>核心内容</strong>：实践版第 4 章（4.3–4.5）</p>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>利用预定义算子重新实现 FNN、RunnerV2_2 完善（实践版 4.3）</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>小批量梯度下降法、FNN 鸢尾花分类数据处理与模型构建（实践版 4.5）</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>RunnerV3 完善、FNN 多分类训练/评价/预测，分析模型调参技巧</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：实现带小批量梯度下降的 FNN 多分类模型，完成鸢尾花分类并优化调参。</p>
+
+<hr />
+
+<h3 id="第-7-周卷积神经网络核心理论">第 7 周：卷积神经网络核心理论</h3>
+
+<p><strong>核心内容</strong>：理论版第 5 章</p>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>二维卷积运算、步长/零填充（卷积变种）、卷积的边缘检测应用</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>CNN 核心算子（卷积层/汇聚层）、网络整体结构，跳过局部响应归一化（LRN）</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>经典 CNN 模型（重点 ResNet，LeNet/AlexNet 仅作历史背景，讲解残差连接解决梯度消失的核心逻辑）</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：手动实现简单卷积运算，理解卷积层/汇聚层的输出维度计算。</p>
+
+<hr />
+
+<h3 id="第-8-周cnn-实战">第 8 周：CNN 实战</h3>
+
+<p><strong>核心内容</strong>：实践版第 5 章（全章）</p>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>卷积算子实现、图像边缘检测实战（实践版 5.1.5）</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>LeNet 模型构建、手写数字识别训练/评价（实践版 5.3）</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>ResNet18 模型构建（带残差连接）、图像分类实战（实践版 5.4–5.5）</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：完成 LeNet 手写数字识别 + ResNet18 图像分类全代码实现，对比残差连接的效果。</p>
+
+<hr />
+
+<h3 id="第-9-周序列模型核心lstmgru-梯度问题解决">第 9 周：序列模型核心（LSTM/GRU）+ 梯度问题解决</h3>
+
+<p><strong>核心内容</strong>：理论版第 6 章 + 实践版第 6 章铺垫</p>
+
+<blockquote>
+  <p>跳过 Simple RNN 独立训练，直接讲 LSTM/GRU（工业界轻量级序列主流），仅用 RNN 长程依赖问题作引入。</p>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>序列模型需求、RNN 长程依赖/梯度爆炸问题（仅现象说明，不做 RNN 代码）</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>LSTM 核心原理（门控机制）、GRU 简化版门控，跳过 RNN 的实时循环学习算法</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>双向 LSTM 原理（序列分类主流）、梯度截断（解决梯度爆炸的主流方法）</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：手绘 LSTM/双向 LSTM 结构，理解门控机制的张量运算逻辑。</p>
+
+<hr />
+
+<h3 id="第-10-周lstm-实战-文本分类">第 10 周：LSTM 实战 + 文本分类</h3>
+
+<p><strong>核心内容</strong>：实践版第 6 章（全章）</p>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>LSTM 模型构建、记忆能力实验（实践版 6.3），跳过纯 RNN 记忆实验</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>梯度截断代码实现、双向 LSTM 文本分类数据处理（实践版 6.2 + 6.4）</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>双向 LSTM 文本分类模型构建、训练/评价/预测</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：实现双向 LSTM 文本分类模型，掌握序列文本数据的处理与建模技巧。</p>
+
+<hr />
+
+<h3 id="第-11-周网络优化与正则化">第 11 周：网络优化与正则化</h3>
+
+<p><strong>核心内容</strong>：理论版第 7 章 + 实践版第 7 章（全章）</p>
+
+<blockquote>
+  <p>跳过落后优化/初始化方法，仅讲工业界主流技术。</p>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>小批量梯度下降（铺垫）、主流优化器（Adam/AdamW 为主，对比 SGD + 动量，跳过纯 SGD）</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>主流参数初始化（He/Xavier）、逐层规范化（BN/LN 为主，跳过 LRN）</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>网络正则化（L2/权重衰减、暂退法）、各类优化/正则化方法的实验对比</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：对比 Adam/He/BN 的组合效果，实现正则化缓解过拟合的实验验证。</p>
+
+<hr />
+
+<h3 id="第-12-周注意力机制核心">第 12 周：注意力机制核心</h3>
+
+<p><strong>核心内容</strong>：理论版第 8 章 + 实践版第 8 章（8.1）</p>
+
+<blockquote>
+  <p>跳过注意力的神经学背景/记忆增强神经网络，仅讲工业界主流的加性/点积注意力。</p>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>注意力机制核心思想、加性注意力/点积注意力原理（实践版 8.1）</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>双向 LSTM + 注意力的文本分类模型构建（实践版 8.1）</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>加性/点积注意力的实验对比、模型训练与评价</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：实现双向 LSTM + 点积注意力的文本分类模型，理解注意力的特征聚焦作用。</p>
+
+<hr />
+
+<h3 id="第-13-周自注意力多头注意力-实战">第 13 周：自注意力/多头注意力 + 实战</h3>
+
+<p><strong>核心内容</strong>：实践版第 8 章（8.2–8.3）</p>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>自注意力模型原理、多头自注意力的特征融合逻辑（实践版 8.2）</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>LSTM + 多头自注意力文本分类、自注意力文本语义匹配模型构建（实践版 8.2–8.3）</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>自注意力模型训练/评价、注意力权重可视化（实操重点）</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：实现多头自注意力模型，完成文本语义匹配与注意力可视化，理解自注意力的核心价值。</p>
+
+<hr />
+
+<h3 id="第-14-周transformer-架构核心衔接序列生成">第 14 周：Transformer 架构核心（衔接序列生成）</h3>
+
+<p><strong>核心内容</strong>：第 8 章自注意力延伸 + 第 15 章序列生成核心思想</p>
+
+<blockquote>
+  <p>跳过第 15 章的 N 元统计模型（过时），直接讲 Transformer（大语言模型基础）。</p>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>自注意力→Transformer 的进化、编码器-解码器架构核心</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>Transformer 的多头自注意力、前馈网络、层规范化细节</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>Transformer 在序列分类/序列生成中的应用，铺垫大语言模型</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：实现简易 Transformer 编码器，理解其张量运算与特征提取逻辑。</p>
+
+<hr />
+
+<h3 id="第-15-周大语言模型llm基础-综合实践">第 15 周：大语言模型（LLM）基础 + 综合实践</h3>
+
+<p><strong>核心内容</strong>：LLM 核心原理（基于 Transformer）+ 综合实操</p>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>大语言模型预训练/微调思路、Seq2Seq 架构（Transformer 版）</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>综合案例 1——CNN + 注意力图像分类；综合案例 2——Transformer 简易文本生成</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>学生实操答疑，解决模型训练/调参中的常见问题</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课堂实操</strong>：实现简易 Transformer 文本生成模型，完成至少一个综合案例的代码优化。</p>
+
+<hr />
+
+<h3 id="第-16-周课程总结-考核说明">第 16 周：课程总结 + 考核说明</h3>
+
+<p><strong>核心内容</strong>：全课程主流技术复盘、实操技能总结、考核安排</p>
+
+<table>
+<thead>
+<tr>
+  <th>节次</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 1 节</td>
+  <td>深度学习核心技术体系梳理（基础→线性模型→FNN→CNN→LSTM→注意力→Transformer）</td>
+</tr>
+<tr>
+  <td>第 2 节</td>
+  <td>实操技能总结（数据处理/模型构建/训练调参/结果可视化的通用流程）</td>
+</tr>
+<tr>
+  <td>第 3 节</td>
+  <td>考核说明（实验报告/课程设计要求）、开放答疑，讲解深度学习后续学习方向</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>课程设计建议</strong>：从图像分类（CNN/注意力）、文本分类（LSTM/Transformer）、文本生成（Transformer）中选一个方向，实现主流模型并做优化。</p>
+
+<hr />
+
+<h2 id="配套教学建议">配套教学建议</h2>
+
+<ol>
+<li><strong>代码聚焦</strong>：所有实操均使用工业界主流 API/框架，跳过手动实现落后算法（如纯 RNN、固定方差初始化），减少无意义的代码工作量。</li>
+<li><strong>理论精简</strong>：对落后技术仅作"一句话历史背景"，不做数学推导、不做代码实现，把课时留给主流技术的原理和实操。</li>
+<li><strong>案例贴合</strong>：所有实践案例均为当前深度学习的经典小案例（手写数字识别、鸢尾花分类、文本分类、简易文本生成），易实现、易理解，贴合本科生能力。</li>
+<li><strong>资料整理</strong>：为学生整理主流技术速查手册（含 CNN/LSTM/Transformer/优化器的核心原理、代码模板），跳过落后技术的相关资料。</li>
+</ol>
+
+<hr />
+
+<h2 id="两本书重叠章节对照表">两本书重叠章节对照表</h2>
+
+<table>
+<thead>
+<tr>
+  <th>理论版章节</th>
+  <th>实践版章节</th>
+  <th>核心重叠内容</th>
+  <th>两版侧重点差异</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>第 2 章 机器学习概述</td>
+  <td>第 2 章 机器学习概述</td>
+  <td>机器学习核心要素、线性回归、多项式回归、正则化缓解过拟合</td>
+  <td><strong>理论版</strong>：基本概念、偏差-方差分解、学习理论（PAC/奥卡姆剃刀等）；<strong>实践版</strong>：数据集构建、模型代码实现、训练/评价全流程 + 波士顿房价预测实战</td>
+</tr>
+<tr>
+  <td>第 3 章 线性模型</td>
+  <td>第 3 章 线性分类</td>
+  <td>Logistic 回归（二分类）、Softmax 回归（多分类）、损失函数、模型优化与评价</td>
+  <td><strong>理论版</strong>：线性判别函数、感知器、支持向量机、参数学习原理；<strong>实践版</strong>：Logistic/Softmax 回归实战 + 鸢尾花分类任务，完善 Runner 类</td>
+</tr>
+<tr>
+  <td>第 4 章 前馈神经网络</td>
+  <td>第 4 章 前馈神经网络</td>
+  <td>神经元、激活函数、自动梯度计算、梯度消失/死亡 ReLU 问题、小批量梯度下降</td>
+  <td><strong>理论版</strong>：反向传播推导、通用近似定理、自动微分数学实现；<strong>实践版</strong>：二分类/鸢尾花分类任务代码，手动 + 预定义算子双版本</td>
+</tr>
+<tr>
+  <td>第 5 章 卷积神经网络</td>
+  <td>第 5 章 卷积神经网络</td>
+  <td>二维卷积运算、卷积层/汇聚层、卷积变种、LeNet/ResNet</td>
+  <td><strong>理论版</strong>：卷积数学性质、CNN 反向传播、AlexNet/Inception 等；<strong>实践版</strong>：卷积算子实现、边缘检测 + LeNet 手写数字识别 + ResNet18 图像分类</td>
+</tr>
+<tr>
+  <td>第 6 章 循环神经网络</td>
+  <td>第 6 章 循环神经网络</td>
+  <td>RNN 记忆能力、梯度爆炸与截断、LSTM 原理、双向 LSTM、序列分类</td>
+  <td><strong>理论版</strong>：RNN 计算能力、BPTT、GRU、堆叠 RNN、图结构扩展；<strong>实践版</strong>：记忆实验复现、梯度截断代码、双向 LSTM 文本分类实战</td>
+</tr>
+<tr>
+  <td>第 7 章 网络优化与正则化</td>
+  <td>第 7 章 网络优化与正则化</td>
+  <td>小批量梯度下降、优化算法对比、参数初始化、BN/LN、L1/L2 正则化、权重衰减、暂退法</td>
+  <td><strong>理论版</strong>：高维非凸优化、正交初始化、超参数优化、数据增强/标签平滑；<strong>实践版</strong>：实验对比不同优化器/初始化/规范化效果，可视化优化器</td>
+</tr>
+<tr>
+  <td>第 8 章 注意力机制与外部记忆</td>
+  <td>第 8 章 注意力机制</td>
+  <td>加性/点积注意力、自注意力、多头自注意力、文本任务应用</td>
+  <td><strong>理论版</strong>：认知神经学背景、记忆增强网络、Hopfield 网络；<strong>实践版</strong>：LSTM + 注意力文本分类、自注意力语义匹配、注意力可视化</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>实践版独有</strong>：第 1 章「实践基础」（张量/算子/Dataset/Runner 类）</p>
+
+<p><strong>理论版独有（本课程使用部分）</strong>：第 1 章「绪论」（第 1 周简介）、第 15 章「序列生成模型」（第 14–15 周，衔接 Transformer 与 LLM）</p>
+
+</body>
+</html>

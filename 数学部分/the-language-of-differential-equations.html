@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Language of Differential Equations — 微分方程的语言</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #faf8f4;
+    --accent: #c0392b;
+    --accent2: #2c3e8a;
+    --muted: #7f8c8d;
+    --border: #d5cfc4;
+    --highlight: #fef3e2;
+    --section-bg: #f4f1eb;
+    --code-bg: #eee9df;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    padding: 4rem 1rem 3rem;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  header::before {
+    content: '∂ ∫ ∇ Δ ∑';
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    letter-spacing: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+  }
+
+  h1 {
+    font-size: 2.6rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.3rem;
+  }
+
+  .subtitle-cn {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--accent2);
+    margin-bottom: 0.3rem;
+  }
+
+  .subtitle-pinyin {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .tagline {
+    margin-top: 1.2rem;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  /* SECTIONS */
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+
+  h2 .cn {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--accent2);
+  }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    min-width: 1.5rem;
+  }
+
+  /* TABLES */
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  thead {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  thead th {
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--highlight); }
+
+  tbody td {
+    padding: 0.65rem 1rem;
+    vertical-align: top;
+  }
+
+  .col-symbol {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--accent);
+    white-space: nowrap;
+    min-width: 80px;
+  }
+
+  .col-en {
+    font-weight: 400;
+    min-width: 120px;
+  }
+
+  .col-cn {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-weight: 500;
+    color: var(--accent2);
+    min-width: 100px;
+  }
+
+  .col-pinyin {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+    min-width: 120px;
+  }
+
+  .col-desc {
+    font-size: 0.9rem;
+    color: #444;
+    max-width: 280px;
+  }
+
+  /* PHRASE TABLE */
+  .phrase-table td:first-child {
+    font-style: italic;
+    min-width: 220px;
+  }
+
+  /* FAMOUS EQ */
+  .famous-eq .col-symbol {
+    font-size: 0.95rem;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  footer .cn {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-style: normal;
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  /* KATEX overrides */
+  .katex { font-size: 1em; }
+
+  /* TOC */
+  nav.toc {
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  nav.toc h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+
+  nav.toc ol {
+    list-style: none;
+    columns: 2;
+    column-gap: 2rem;
+    font-size: 0.95rem;
+  }
+
+  nav.toc li {
+    margin-bottom: 0.35rem;
+    break-inside: avoid;
+  }
+
+  nav.toc a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--border);
+    transition: border-color 0.2s;
+  }
+
+  nav.toc a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  @media (max-width: 700px) {
+    h1 { font-size: 1.8rem; }
+    .subtitle-cn { font-size: 1.1rem; }
+    nav.toc ol { columns: 1; }
+    thead th, tbody td { padding: 0.5rem 0.6rem; font-size: 0.85rem; }
+    .col-symbol { font-size: 0.95rem; }
+    .container { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>The Language of Differential Equations</h1>
+  <div class="subtitle-cn">微分方程的语言</div>
+  <div class="subtitle-pinyin">Wēi fēn fāng chéng de yǔ yán</div>
+  <p class="tagline">A trilingual reference for reading, writing &amp; pronouncing the symbols of calculus</p>
+</header>
+
+<nav class="toc">
+  <h3>Contents · 目录</h3>
+  <ol>
+    <li><a href="#core">Core Symbols · 核心符号</a></li>
+    <li><a href="#notation">Derivative Notations · 导数记法</a></li>
+    <li><a href="#integrals">Integral Symbols · 积分符号</a></li>
+    <li><a href="#operators">Functions &amp; Operators · 函数与算子</a></li>
+    <li><a href="#types">Equation Types · 方程类型</a></li>
+    <li><a href="#solutions">Solution Terms · 解与特性术语</a></li>
+    <li><a href="#greek">Greek Letters · 希腊字母</a></li>
+    <li><a href="#phrases">Key Phrases · 关键短语</a></li>
+    <li><a href="#famous">Famous Equations · 著名方程</a></li>
+  </ol>
+</nav>
+
+<!-- 1. CORE SYMBOLS -->
+<section id="core">
+  <h2><span class="section-num">01</span> Core Symbols <span class="cn">核心符号</span></h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Symbol</th><th>English</th><th>中文</th><th>Pinyin</th><th>What It Does</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-symbol">$d$</td>
+        <td class="col-en">"dee"</td>
+        <td class="col-cn">微分</td>
+        <td class="col-pinyin">wēi fēn</td>
+        <td class="col-desc">Denotes an infinitesimally small change in a variable</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\partial$</td>
+        <td class="col-en">"partial" / "del"</td>
+        <td class="col-cn">偏微分</td>
+        <td class="col-pinyin">piān wēi fēn</td>
+        <td class="col-desc">Partial derivative — change in one variable while others are held constant</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\dfrac{dy}{dx}$</td>
+        <td class="col-en">"dee-y by dee-x"</td>
+        <td class="col-cn">y对x的导数</td>
+        <td class="col-pinyin">y duì x de dǎo shù</td>
+        <td class="col-desc">Derivative of y with respect to x; the rate of change</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\dfrac{\partial y}{\partial x}$</td>
+        <td class="col-en">"partial y partial x"</td>
+        <td class="col-cn">y对x的偏导数</td>
+        <td class="col-pinyin">y duì x de piān dǎo shù</td>
+        <td class="col-desc">Partial derivative of y with respect to x</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\dfrac{d^2y}{dx^2}$</td>
+        <td class="col-en">"dee-two-y by dee-x-squared"</td>
+        <td class="col-cn">y对x的二阶导数</td>
+        <td class="col-pinyin">y duì x de èr jiē dǎo shù</td>
+        <td class="col-desc">Second derivative; rate of change of the rate of change</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\Delta$</td>
+        <td class="col-en">"delta"</td>
+        <td class="col-cn">差 / 增量</td>
+        <td class="col-pinyin">chā / zēng liàng</td>
+        <td class="col-desc">A finite change or difference in a quantity</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\nabla$</td>
+        <td class="col-en">"nabla" / "del"</td>
+        <td class="col-cn">梯度算子</td>
+        <td class="col-pinyin">tī dù suàn zǐ</td>
+        <td class="col-desc">Gradient operator; points in direction of steepest increase</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\nabla^2$</td>
+        <td class="col-en">"del squared" / "Laplacian"</td>
+        <td class="col-cn">拉普拉斯算子</td>
+        <td class="col-pinyin">Lā pǔ lā sī suàn zǐ</td>
+        <td class="col-desc">Laplacian; sum of all unmixed second partial derivatives</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 2. DERIVATIVE NOTATIONS -->
+<section id="notation">
+  <h2><span class="section-num">02</span> Derivative Notations <span class="cn">导数记法</span></h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Symbol</th><th>English</th><th>中文</th><th>Pinyin</th><th>What It Does</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-symbol">$y'$</td>
+        <td class="col-en">"y prime"</td>
+        <td class="col-cn">y撇</td>
+        <td class="col-pinyin">y piě</td>
+        <td class="col-desc">First derivative (Lagrange notation)</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$y''$</td>
+        <td class="col-en">"y double prime"</td>
+        <td class="col-cn">y两撇</td>
+        <td class="col-pinyin">y liǎng piě</td>
+        <td class="col-desc">Second derivative</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\dot{y}$</td>
+        <td class="col-en">"y dot"</td>
+        <td class="col-cn">y点</td>
+        <td class="col-pinyin">y diǎn</td>
+        <td class="col-desc">First time derivative (Newton notation)</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\ddot{y}$</td>
+        <td class="col-en">"y double dot"</td>
+        <td class="col-cn">y两点</td>
+        <td class="col-pinyin">y liǎng diǎn</td>
+        <td class="col-desc">Second time derivative</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$Df$</td>
+        <td class="col-en">"D of f"</td>
+        <td class="col-cn">f的导数</td>
+        <td class="col-pinyin">f de dǎo shù</td>
+        <td class="col-desc">Derivative operator applied to f (Euler notation)</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$D^n f$</td>
+        <td class="col-en">"D-n of f"</td>
+        <td class="col-cn">f的n阶导数</td>
+        <td class="col-pinyin">f de n jiē dǎo shù</td>
+        <td class="col-desc">The nth derivative of f</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 3. INTEGRALS -->
+<section id="integrals">
+  <h2><span class="section-num">03</span> Integral Symbols <span class="cn">积分符号</span></h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Symbol</th><th>English</th><th>中文</th><th>Pinyin</th><th>What It Does</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-symbol">$\int$</td>
+        <td class="col-en">"integral"</td>
+        <td class="col-cn">积分</td>
+        <td class="col-pinyin">jī fēn</td>
+        <td class="col-desc">Finds the antiderivative; reverses differentiation</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\int_a^b$</td>
+        <td class="col-en">"integral from a to b"</td>
+        <td class="col-cn">从a到b的定积分</td>
+        <td class="col-pinyin">cóng a dào b de dìng jī fēn</td>
+        <td class="col-desc">Definite integral; accumulated value from a to b</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\iint$</td>
+        <td class="col-en">"double integral"</td>
+        <td class="col-cn">二重积分</td>
+        <td class="col-pinyin">èr chóng jī fēn</td>
+        <td class="col-desc">Integration over a 2D region</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\iiint$</td>
+        <td class="col-en">"triple integral"</td>
+        <td class="col-cn">三重积分</td>
+        <td class="col-pinyin">sān chóng jī fēn</td>
+        <td class="col-desc">Integration over a 3D region</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\oint$</td>
+        <td class="col-en">"contour integral"</td>
+        <td class="col-cn">环路积分</td>
+        <td class="col-pinyin">huán lù jī fēn</td>
+        <td class="col-desc">Integration along a closed curve</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 4. FUNCTIONS & OPERATORS -->
+<section id="operators">
+  <h2><span class="section-num">04</span> Functions &amp; Operators <span class="cn">常见函数与算子</span></h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Symbol</th><th>English</th><th>中文</th><th>Pinyin</th><th>What It Does</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-symbol">$f(x)$</td>
+        <td class="col-en">"f of x"</td>
+        <td class="col-cn">f关于x的函数</td>
+        <td class="col-pinyin">f guān yú x de hán shù</td>
+        <td class="col-desc">A function mapping input x to an output</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\lim$</td>
+        <td class="col-en">"limit"</td>
+        <td class="col-cn">极限</td>
+        <td class="col-pinyin">jí xiàn</td>
+        <td class="col-desc">Value a function approaches</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\sum$</td>
+        <td class="col-en">"sigma" / "sum"</td>
+        <td class="col-cn">求和</td>
+        <td class="col-pinyin">qiú hé</td>
+        <td class="col-desc">Summation of terms</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\prod$</td>
+        <td class="col-en">"product"</td>
+        <td class="col-cn">连乘 / 求积</td>
+        <td class="col-pinyin">lián chéng / qiú jī</td>
+        <td class="col-desc">Product of terms</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\infty$</td>
+        <td class="col-en">"infinity"</td>
+        <td class="col-cn">无穷大</td>
+        <td class="col-pinyin">wú qióng dà</td>
+        <td class="col-desc">Quantity without bound</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\equiv$</td>
+        <td class="col-en">"identically equal to"</td>
+        <td class="col-cn">恒等于</td>
+        <td class="col-pinyin">héng děng yú</td>
+        <td class="col-desc">True for all values of the variable</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\approx$</td>
+        <td class="col-en">"approximately equal"</td>
+        <td class="col-cn">约等于</td>
+        <td class="col-pinyin">yuē děng yú</td>
+        <td class="col-desc">Approximately equal to</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\propto$</td>
+        <td class="col-en">"proportional to"</td>
+        <td class="col-cn">正比于</td>
+        <td class="col-pinyin">zhèng bǐ yú</td>
+        <td class="col-desc">Directly proportional to</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 5. EQUATION TYPES -->
+<section id="types">
+  <h2><span class="section-num">05</span> Equation Types <span class="cn">方程类型</span></h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Abbrev.</th><th>English</th><th>中文</th><th>Pinyin</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-symbol">ODE</td>
+        <td class="col-en">Ordinary Differential Equation</td>
+        <td class="col-cn">常微分方程</td>
+        <td class="col-pinyin">cháng wēi fēn fāng chéng</td>
+        <td class="col-desc">Derivatives w.r.t. one independent variable only</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">PDE</td>
+        <td class="col-en">Partial Differential Equation</td>
+        <td class="col-cn">偏微分方程</td>
+        <td class="col-pinyin">piān wēi fēn fāng chéng</td>
+        <td class="col-desc">Partial derivatives w.r.t. multiple independent variables</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">IVP</td>
+        <td class="col-en">Initial Value Problem</td>
+        <td class="col-cn">初值问题</td>
+        <td class="col-pinyin">chū zhí wèn tí</td>
+        <td class="col-desc">Conditions specified at a single point</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">BVP</td>
+        <td class="col-en">Boundary Value Problem</td>
+        <td class="col-cn">边值问题</td>
+        <td class="col-pinyin">biān zhí wèn tí</td>
+        <td class="col-desc">Conditions specified at two or more points</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 6. SOLUTION TERMS -->
+<section id="solutions">
+  <h2><span class="section-num">06</span> Solution &amp; Behavior Terms <span class="cn">解与特性术语</span></h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Symbol / Term</th><th>English</th><th>中文</th><th>Pinyin</th><th>Meaning</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-symbol">$C$</td>
+        <td class="col-en">constant of integration</td>
+        <td class="col-cn">积分常数</td>
+        <td class="col-pinyin">jī fēn cháng shù</td>
+        <td class="col-desc">Arbitrary constant added when integrating</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\lambda$</td>
+        <td class="col-en">eigenvalue</td>
+        <td class="col-cn">特征值</td>
+        <td class="col-pinyin">tè zhēng zhí</td>
+        <td class="col-desc">Determines behavior of solutions</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$e^x$</td>
+        <td class="col-en">"e to the x"</td>
+        <td class="col-cn">e的x次方</td>
+        <td class="col-pinyin">e de x cì fāng</td>
+        <td class="col-desc">Exponential function; fundamental solution to y' = y</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\sin, \cos$</td>
+        <td class="col-en">sine, cosine</td>
+        <td class="col-cn">正弦, 余弦</td>
+        <td class="col-pinyin">zhèng xián, yú xián</td>
+        <td class="col-desc">Trig functions; appear in oscillatory solutions</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\ln$</td>
+        <td class="col-en">natural log</td>
+        <td class="col-cn">自然对数</td>
+        <td class="col-pinyin">zì rán duì shù</td>
+        <td class="col-desc">Inverse of the exponential function</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">—</td>
+        <td class="col-en">homogeneous</td>
+        <td class="col-cn">齐次的</td>
+        <td class="col-pinyin">qí cì de</td>
+        <td class="col-desc">All terms involve the unknown or its derivatives</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">—</td>
+        <td class="col-en">nonhomogeneous</td>
+        <td class="col-cn">非齐次的</td>
+        <td class="col-pinyin">fēi qí cì de</td>
+        <td class="col-desc">Contains a forcing function</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">—</td>
+        <td class="col-en">linear</td>
+        <td class="col-cn">线性的</td>
+        <td class="col-pinyin">xiàn xìng de</td>
+        <td class="col-desc">Unknown appears to first power only</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">—</td>
+        <td class="col-en">nonlinear</td>
+        <td class="col-cn">非线性的</td>
+        <td class="col-pinyin">fēi xiàn xìng de</td>
+        <td class="col-desc">Contains powers/products of the unknown</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">—</td>
+        <td class="col-en">particular solution</td>
+        <td class="col-cn">特解</td>
+        <td class="col-pinyin">tè jiě</td>
+        <td class="col-desc">One specific solution satisfying conditions</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">—</td>
+        <td class="col-en">general solution</td>
+        <td class="col-cn">通解</td>
+        <td class="col-pinyin">tōng jiě</td>
+        <td class="col-desc">Family of all solutions with arbitrary constants</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 7. GREEK LETTERS -->
+<section id="greek">
+  <h2><span class="section-num">07</span> Greek Letters in DEs <span class="cn">希腊字母</span></h2>
+  <div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Letter</th><th>Name</th><th>中文</th><th>Pinyin</th><th>Common Use</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="col-symbol">$\alpha$</td><td class="col-en">alpha</td><td class="col-cn">阿尔法</td><td class="col-pinyin">ā ěr fǎ</td><td class="col-desc">Parameter / coefficient</td></tr>
+      <tr><td class="col-symbol">$\beta$</td><td class="col-en">beta</td><td class="col-cn">贝塔</td><td class="col-pinyin">bèi tǎ</td><td class="col-desc">Parameter / coefficient</td></tr>
+      <tr><td class="col-symbol">$\gamma$</td><td class="col-en">gamma</td><td class="col-cn">伽马</td><td class="col-pinyin">jiā mǎ</td><td class="col-desc">Damping coefficient</td></tr>
+      <tr><td class="col-symbol">$\delta$</td><td class="col-en">delta</td><td class="col-cn">德尔塔</td><td class="col-pinyin">dé ěr tǎ</td><td class="col-desc">Perturbation / Dirac delta</td></tr>
+      <tr><td class="col-symbol">$\epsilon$</td><td class="col-en">epsilon</td><td class="col-cn">伊普西隆</td><td class="col-pinyin">yī pǔ xī lóng</td><td class="col-desc">Small quantity</td></tr>
+      <tr><td class="col-symbol">$\lambda$</td><td class="col-en">lambda</td><td class="col-cn">拉姆达</td><td class="col-pinyin">lā mǔ dá</td><td class="col-desc">Eigenvalue</td></tr>
+      <tr><td class="col-symbol">$\mu$</td><td class="col-en">mu</td><td class="col-cn">缪</td><td class="col-pinyin">miù</td><td class="col-desc">Integrating factor</td></tr>
+      <tr><td class="col-symbol">$\omega$</td><td class="col-en">omega</td><td class="col-cn">欧米伽</td><td class="col-pinyin">ōu mǐ jiā</td><td class="col-desc">Angular frequency</td></tr>
+      <tr><td class="col-symbol">$\phi$</td><td class="col-en">phi</td><td class="col-cn">斐</td><td class="col-pinyin">fěi</td><td class="col-desc">Phase angle / basis function</td></tr>
+      <tr><td class="col-symbol">$\psi$</td><td class="col-en">psi</td><td class="col-cn">普赛</td><td class="col-pinyin">pǔ sài</td><td class="col-desc">Wave function</td></tr>
+      <tr><td class="col-symbol">$\rho$</td><td class="col-en">rho</td><td class="col-cn">柔</td><td class="col-pinyin">róu</td><td class="col-desc">Density</td></tr>
+      <tr><td class="col-symbol">$\sigma$</td><td class="col-en">sigma</td><td class="col-cn">西格玛</td><td class="col-pinyin">xī gé mǎ</td><td class="col-desc">Summation / stress</td></tr>
+      <tr><td class="col-symbol">$\tau$</td><td class="col-en">tau</td><td class="col-cn">陶</td><td class="col-pinyin">táo</td><td class="col-desc">Time constant / delay</td></tr>
+      <tr><td class="col-symbol">$\xi$</td><td class="col-en">xi</td><td class="col-cn">克赛</td><td class="col-pinyin">kè sài</td><td class="col-desc">Transformed variable</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 8. KEY PHRASES -->
+<section id="phrases">
+  <h2><span class="section-num">08</span> Key Phrases <span class="cn">关键短语</span></h2>
+  <div class="table-wrap">
+  <table class="phrase-table">
+    <thead>
+      <tr><th>English</th><th>中文</th><th>Pinyin</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>"The derivative of y with respect to x"</td><td class="col-cn">y对x求导</td><td class="col-pinyin">y duì x qiú dǎo</td></tr>
+      <tr><td>"The second derivative"</td><td class="col-cn">二阶导数</td><td class="col-pinyin">èr jiē dǎo shù</td></tr>
+      <tr><td>"Integrate both sides"</td><td class="col-cn">两边积分</td><td class="col-pinyin">liǎng biān jī fēn</td></tr>
+      <tr><td>"Subject to the initial condition"</td><td class="col-cn">满足初始条件</td><td class="col-pinyin">mǎn zú chū shǐ tiáo jiàn</td></tr>
+      <tr><td>"Let u equal…"</td><td class="col-cn">令u等于…</td><td class="col-pinyin">lìng u děng yú…</td></tr>
+      <tr><td>"By separation of variables"</td><td class="col-cn">用分离变量法</td><td class="col-pinyin">yòng fēn lí biàn liàng fǎ</td></tr>
+      <tr><td>"Apply the chain rule"</td><td class="col-cn">应用链式法则</td><td class="col-pinyin">yìng yòng liàn shì fǎ zé</td></tr>
+      <tr><td>"Converges to"</td><td class="col-cn">收敛于</td><td class="col-pinyin">shōu liǎn yú</td></tr>
+      <tr><td>"Diverges"</td><td class="col-cn">发散</td><td class="col-pinyin">fā sàn</td></tr>
+      <tr><td>"Tends to infinity"</td><td class="col-cn">趋向无穷</td><td class="col-pinyin">qū xiàng wú qióng</td></tr>
+      <tr><td>"Is bounded"</td><td class="col-cn">有界</td><td class="col-pinyin">yǒu jiè</td></tr>
+      <tr><td>"Satisfies the equation"</td><td class="col-cn">满足方程</td><td class="col-pinyin">mǎn zú fāng chéng</td></tr>
+      <tr><td>"Substitute into"</td><td class="col-cn">代入</td><td class="col-pinyin">dài rù</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 9. FAMOUS EQUATIONS -->
+<section id="famous">
+  <h2><span class="section-num">09</span> Famous Equations <span class="cn">著名方程</span></h2>
+  <div class="table-wrap">
+  <table class="famous-eq">
+    <thead>
+      <tr><th>Equation</th><th>English Name</th><th>中文</th><th>Pinyin</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-symbol">$\dfrac{dy}{dx} = ky$</td>
+        <td class="col-en">Exponential growth / decay</td>
+        <td class="col-cn">指数增长/衰减方程</td>
+        <td class="col-pinyin">zhǐ shù zēng zhǎng / shuāi jiǎn fāng chéng</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\dfrac{d^2y}{dx^2} + \omega^2 y = 0$</td>
+        <td class="col-en">Simple harmonic oscillator</td>
+        <td class="col-cn">简谐振动方程</td>
+        <td class="col-pinyin">jiǎn xié zhèn dòng fāng chéng</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\dfrac{\partial u}{\partial t} = k\dfrac{\partial^2 u}{\partial x^2}$</td>
+        <td class="col-en">Heat equation</td>
+        <td class="col-cn">热传导方程</td>
+        <td class="col-pinyin">rè chuán dǎo fāng chéng</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\dfrac{\partial^2 u}{\partial t^2} = c^2 \dfrac{\partial^2 u}{\partial x^2}$</td>
+        <td class="col-en">Wave equation</td>
+        <td class="col-cn">波动方程</td>
+        <td class="col-pinyin">bō dòng fāng chéng</td>
+      </tr>
+      <tr>
+        <td class="col-symbol">$\nabla^2 u = 0$</td>
+        <td class="col-en">Laplace's equation</td>
+        <td class="col-cn">拉普拉斯方程</td>
+        <td class="col-pinyin">Lā pǔ lā sī fāng chéng</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<footer>
+  <p>Created as a study aid for bilingual learners of mathematics.</p>
+  <span class="cn">为双语数学学习者编写的学习参考。</span>
+</footer>
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "$", right: "$", display: false}
+      ],
+      throwOnError: false
+    });
+  });
+</script>
+</body>
+</html>
