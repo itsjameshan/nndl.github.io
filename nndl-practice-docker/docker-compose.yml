@@ -1,0 +1,29 @@
+# Convenience wrapper. On Windows 10 (Docker Desktop + WSL2):
+#   docker compose up           -> Jupyter Lab at http://localhost:8888
+#   docker compose run --rm test -> run the full verification, report in ./report
+services:
+  lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nndl-practice:cpu
+    ports:
+      - "127.0.0.1:8888:8888"
+    volumes:
+      # persist any notebooks you edit / data you add, without rebuilding
+      - ./report:/workspace/report
+
+  test:
+    image: nndl-practice:cpu
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["bash", "/workspace/run_tests.sh"]
+    environment:
+      # CPU_FAST shrinks training-length knobs so every notebook finishes in minutes
+      # on CPU (originals stay intact in the image). Set CPU_FAST="" for full training.
+      CPU_FAST: "1"
+      # bump if a notebook needs longer; lower ONLY to a subset for a quick check
+      NB_TIMEOUT: "1500"
+    volumes:
+      - ./report:/workspace/report

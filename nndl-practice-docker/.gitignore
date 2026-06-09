@@ -1,0 +1,9 @@
+# transient run artifacts + tooling
+report/
+.claude/
+*.tar
+*.tar.gz
+**/__pycache__/
+**/*.pyc
+**/._cpufast.ipynb
+**/.ipynb_checkpoints/
