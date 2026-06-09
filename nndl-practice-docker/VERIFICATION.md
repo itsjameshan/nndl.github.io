@@ -1,5 +1,8 @@
 # Verification record
 
+Target: the **PyTorch edition of《神经网络与深度学习：案例与实践》（第二版）** — the `pytorch/`
+notebooks of nndl/nndl-practice (legacy/ and the PaddlePaddle edition are out of scope).
+
 Build host: Apple Silicon (arm64) Mac, **8 GB RAM**, Docker Desktop VM = 4 GB.
 Image: `nndl-practice:cpu-arm64`, 2.32 GB, `torch 2.12.0+cpu`, `torchvision 0.27.0+cpu`,
 `torch_geometric 2.8.0`. Repo pinned at `e429d53`.
@@ -33,11 +36,11 @@ native arm64 apply to the linux/amd64 (Windows 10) image built from the same Doc
 | chap10 大语言模型与智能体-下 (agent) | PASS | 18 |
 | chap5 卷积神经网络-下 (CIFAR ResNet) | RAM-bound | — |
 | chap6 循环神经网络-下 (RNN) | RAM-bound | — |
+| chap9 图神经网络 (GNN) | PASS | 176 |
 | chap8 注意力机制-上/下 (attention) | not reached | — |
 | chap7 网络优化与正则化 | not reached | — |
-| chap9 图神经网络 (GNN) | not reached | — |
 
-**12 verified GREEN.** The rest were not completed *on this host* because the 4 GB Docker VM
+**13 verified GREEN.** The rest were not completed *on this host* because the 4 GB Docker VM
 (8 GB physical RAM) runs out of memory on the CIFAR/IMDB training notebooks, which repeatedly
 wedged the Docker daemon. This is a host-resource limit, not an image defect.
 

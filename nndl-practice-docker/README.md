@@ -1,8 +1,14 @@
-# nndl-practice in Docker (CPU) — Windows 10
+# 《神经网络与深度学习：案例与实践》（第二版）PyTorch — Docker (CPU) — Windows 10
 
-A self-contained CPU image that runs the `pytorch/` notebooks of
-[nndl/nndl-practice](https://github.com/nndl/nndl-practice) — 17 notebooks, 10 chapters —
-with all dependencies and datasets baked in. No GPU and no internet required at run time.
+A self-contained CPU image for the **PyTorch edition of《神经网络与深度学习：案例与实践》（第二版）**
+(邱锡鹏 / *Neural Networks and Deep Learning: Cases and Practice, 2nd ed.*). It runs the
+`pytorch/` notebooks of [nndl/nndl-practice](https://github.com/nndl/nndl-practice) — the 17
+notebooks across the 10 chapters of the second-edition PyTorch implementation — with all
+dependencies and datasets baked in. No GPU and no internet required at run time.
+
+> Scope: this is the **`pytorch/` (案例与实践 第二版) implementation only**. The repo's
+> `legacy/` folder (the first-edition theory-book exercises) and the separate PaddlePaddle
+> edition ([nndl/practice-in-paddle](https://github.com/nndl/practice-in-paddle)) are out of scope.
 
 ## What's inside
 
@@ -65,11 +71,12 @@ code is architecture-independent, so amd64 behaves identically):
 | Notebooks | Status |
 |---|---|
 | chap1, chap2 上/下, chap3 上/下, chap4 上/下, chap5上, chap6上 | ✅ verified GREEN via CPU_FAST (5–142 s each) |
-| **chap10 上/下 (GPT + agent)** | ✅ verified GREEN via CPU_FAST (109 s / 18 s; full training needs a GPU) |
+| chap9 图神经网络 (GNN) | ✅ verified GREEN via CPU_FAST (176 s) |
+| **chap10 上/下 (GPT + agent)** | ✅ verified GREEN via CPU_FAST (≈110 s / 18 s; full training needs a GPU) |
 | chap5下 (CIFAR ResNet), chap6下 (RNN), chap8 上/下 (attention) | ⚠️ RAM-bound — OOM a 4 GB VM on the 8 GB build host. The code is correct; **give Docker ≥6 GB and they run.** Verify these on Win10. |
-| chap7, chap9 | ◻️ not formally verified on the build host (it ran out of RAM headroom before reaching them); low-risk, run them on Win10 to confirm |
+| chap7 网络优化与正则化 | ◻️ not formally verified on the build host (ran out of RAM headroom before reaching it); low-risk, run on Win10 to confirm |
 
-> Bottom line: 12 notebooks confirmed green here under CPU_FAST; the rest are blocked only by
+> Bottom line: 13 notebooks confirmed green here under CPU_FAST; the rest are blocked only by
 > the build host's 8 GB RAM, not by the image. On a machine with ≥6 GB of Docker memory,
 > `docker compose run --rm test` is expected to take all 17 green.
 

@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1
-# nndl-practice — CPU image that runs all 17 pytorch/ notebooks offline.
+# 《神经网络与深度学习：案例与实践》(第二版) PyTorch — CPU image that runs all 17
+# pytorch/ notebooks of nndl/nndl-practice offline (legacy/ and PaddlePaddle are out of scope).
 # Builds for both linux/amd64 (Windows 10 target) and linux/arm64 (local verify).
 FROM python:3.11-slim-bookworm
 
